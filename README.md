@@ -4,7 +4,7 @@ Resources for the migration of [DICOM WADO-WS](http://dicom.nema.org/medical/dic
 ## Collaborating vendors
 The initiative is started by these Dutch vendors to improve interoperability of image sharing in Dutch HIEs.
 
-* Vanad
+* VANAD Enovation
 * Meddex
 * Forcare
 
