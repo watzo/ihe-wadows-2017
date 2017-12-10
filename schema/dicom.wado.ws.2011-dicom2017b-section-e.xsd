@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="urn:ihe:rad:xdsi-b:2009"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="urn:ihe:rad:xdsi-b:2009" elementFormDefault="qualified"
+attributeFormDefault="unqualified"
+xmlns:tns="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0">
+  <xs:import namespace="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" />
+  <xs:import namespace="urn:ihe:iti:xds-b:2007" />
+  <xs:simpleType name="LongName">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="256" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RetrieveDocumentSetRequestType">
+    <xs:sequence>
+      <xs:element name="DocumentRequest" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="HomeCommunityId" type="LongName" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>This corresponds to the home attribute of the
+                Identifiable class in regrep RIM (regrep-rim-3.0-os.pdf, page
+                20)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RepositoryUniqueId" type="LongName"
+            minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>This is the
+                XDSDocumentEntry.repositoryUniqueId attribute in the XDS
+                metadata</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DocumentUniqueId" type="LongName">
+              <xs:annotation>
+                <xs:documentation>This is the XDSDocumentEntry.uniqueId
+                attribute in the XDS metadata</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistryErrorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="codeContext" type="xs:string" use="required" />
+        <xs:attribute name="errorCode" type="xs:string" use="required" />
+        <xs:attribute default="urn:oasis:names:tc:ebxml-regrep:ErrorSeverityType:Error"
+        name="severity" type="xs:anyURI" />
+        <xs:attribute name="location" type="xs:string" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RegistryErrorListType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">The RegistryErrorList is derived from the
+      ErrorList element from the ebXML Message Service
+      Specification</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="RegistryError"
+      type="RegistryErrorType" />
+    </xs:sequence>
+    <xs:attribute name="highestSeverity" type="xs:anyURI" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="RegistryResponseType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Base type for all ebXML Registry
+      responses</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <!-- every response may be extended using Slots. -->
+      <xs:element minOccurs="0" type="RegistryErrorListType"
+      name="RegistryErrorList" />
+    </xs:sequence>
+    <xs:attribute name="status" type="xs:anyURI" use="required" />
+    <!-- id is the request if for the request for which this is a response -->
+    <xs:attribute name="requestId" type="xs:anyURI" use="optional" />
+  </xs:complexType>
+  <xs:element name="RetrieveDocumentSetRequest"
+  type="RetrieveDocumentSetRequestType" />
+  <xs:complexType name="RetrieveDocumentSetResponseType">
+    <xs:sequence>
+      <xs:element name="RegistryResponse" type="RegistryResponseType" />
+      <xs:sequence minOccurs="0">
+        <xs:element maxOccurs="unbounded" name="DocumentResponse">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="HomeCommunityId" type="LongName">
+                <xs:annotation>
+                  <xs:documentation>This corresponds to the home attribute of
+                  the Identifiable class in regrep RIM (regrep-rim-3.0-os.pdf,
+                  page 20)</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="RepositoryUniqueId" type="LongName">
+                <xs:annotation>
+                  <xs:documentation>This is the
+                  XDSDocumentEntry.repositoryUniqueId attribute in the XDS
+                  metadata</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="DocumentUniqueId" type="LongName">
+                <xs:annotation>
+                  <xs:documentation>This is the XDSDocumentEntry.uniqueId
+                  attribute in the XDS metadata</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element minOccurs="0" name="Document"
+              type="xs:base64Binary" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RetrieveDocumentSetResponse"
+  type="RetrieveDocumentSetResponseType" />
+  <xs:complexType name="RetrieveRenderedImagingDocumentSetRequestType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="StudyRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="SeriesRequest">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded"
+                  name="RenderedDocumentRequest">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="HomeCommunityId" type="LongName"
+                        minOccurs="0">
+                          <xs:annotation>
+                            <xs:documentation>This corresponds to the home
+                            attribute of the Identifiable class in regrep RIM
+                            (regrep-rim-3.0-os.pdf, page 20)</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RepositoryUniqueId" type="LongName"
+                        minOccurs="0">
+                          <xs:annotation>
+                            <xs:documentation>This is the
+                            XDSDocumentEntry.repositoryUniqueId attribute in
+                            the XDS metadata</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DocumentUniqueId" type="LongName">
+                          <xs:annotation>
+                            <xs:documentation>This is the
+                            XDSDocumentEntry.uniqueId attribute in the XDS
+                            metadata</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="0" name="Annotation"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="Rows"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="Columns"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="Region"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="WindowWidth"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="WindowCenter"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="ImageQuality"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="PresentationSeriesUID"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="Anonymize"
+                        type="xs:string" />
+                        <xs:element minOccurs="0" name="FrameNumber"
+                        type="xs:string" />
+                        <xs:element minOccurs="1" name="ContentTypeList"
+                        type="xs:string" maxOccurs="unbounded" />
+                        <xs:element minOccurs="1" name="CharsetList"
+                        type="xs:string" maxOccurs="unbounded" />
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RetrieveRenderedImagingDocumentSetRequest"
+  type="RetrieveRenderedImagingDocumentSetRequestType" />
+  <xs:complexType name="RetrieveRenderedImagingDocumentSetResponseType">
+    <xs:sequence>
+      <xs:element name="RegistryResponse" type="RegistryResponseType" />
+      <xs:element maxOccurs="unbounded" name="RenderedDocumentSetResponse"
+      minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="HomeCommunityId" type="LongName" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>This corresponds to the home attribute of the
+                Identifiable class in regrep RIM (regrep-rim-3.0-os.pdf, page
+                20)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RepositoryUniqueId" type="LongName"
+            minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>This is the
+                XDSDocumentEntry.repositoryUniqueId attribute in the XDS
+                metadata</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SourceDocumentUniqueId" type="LongName">
+              <xs:annotation>
+                <xs:documentation>This is the XDSDocumentEntry.uniqueId
+                attribute in the XDS metadata</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="Annotation" type="xs:string" />
+            <xs:element minOccurs="1" name="Rows" type="xs:string" />
+            <xs:element minOccurs="1" name="Columns" type="xs:string" />
+            <xs:element minOccurs="1" name="Region" type="xs:string" />
+            <xs:element name="WindowWidth" type="xs:string" />
+            <xs:element minOccurs="1" name="WindowCenter" type="xs:string" />
+            <xs:element minOccurs="1" name="ImageQuality" type="xs:string" />
+            <xs:element minOccurs="1" name="PresentationSeriesUID"
+            type="xs:string" />
+            <xs:element minOccurs="0" name="Anonymize" type="xs:string" />
+            <xs:element minOccurs="0" name="FrameNumber" type="xs:string" />
+            <xs:element minOccurs="1" name="mimeType" type="xs:string"
+            maxOccurs="1" />
+            <xs:element minOccurs="1" name="Document" type="xs:base64Binary" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RetrieveRenderedImagingDocumentSetResponse"
+  type="RetrieveRenderedImagingDocumentSetResponseType" />
+  <xs:complexType name="RetrieveImagingDocumentSetInformationRequestType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="StudyRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="SeriesRequest">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded"
+                  name="DocumentInformationRequest">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="HomeCommunityId" type="LongName"
+                        minOccurs="0">
+                          <xs:annotation>
+                            <xs:documentation>This corresponds to the home
+                            attribute of the Identifiable class in regrep RIM
+                            (regrep-rim-3.0-os.pdf, page 20)</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RepositoryUniqueId" type="LongName"
+                        minOccurs="1">
+                          <xs:annotation>
+                            <xs:documentation>This is the
+                            XDSDocumentEntry.repositoryUniqueId attribute in
+                            the XDS metadata</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DocumentUniqueId" type="LongName">
+                          <xs:annotation>
+                            <xs:documentation>This is the
+                            XDSDocumentEntry.uniqueId attribute in the XDS
+                            metadata</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="0" name="Anonymize"
+                        type="xs:string" />
+                        <xs:element minOccurs="1" name="XPath" type="xs:string"
+                        maxOccurs="1" />
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RetrieveImagingDocumentSetInformationRequest"
+  type="RetrieveImagingDocumentSetInformationRequestType" />
+  <xs:complexType name="RetrieveImagingDocumentSetInformationResponseType">
+    <xs:sequence>
+      <xs:element name="RegistryResponse" type="RegistryResponseType" />
+      <xs:element maxOccurs="unbounded" name="DocumentInformationResponse"
+      minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="HomeCommunityId" type="LongName" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>This corresponds to the home attribute of the
+                Identifiable class in regrep RIM (regrep-rim-3.0-os.pdf, page
+                20)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RepositoryUniqueId" type="LongName"
+            minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>This is the
+                XDSDocumentEntry.repositoryUniqueId attribute in the XDS
+                metadata</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DocumentUniqueId" type="LongName">
+              <xs:annotation>
+                <xs:documentation>This is the XDSDocumentEntry.uniqueId
+                attribute in the XDS metadata</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="FrameNumber" type="xs:string" />
+            <xs:element minOccurs="1" name="XPathResponseList">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="XPathResponse"
+                  type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RetrieveImagingDocumentSetInformationResponse"
+  type="RetrieveImagingDocumentSetInformationResponseType" />
+</xs:schema>
