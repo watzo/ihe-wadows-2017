@@ -1,0 +1,2 @@
+language: java
+script: xjc schema/DICOM/dicom.wado.ws.2011.xsd -d /tmp 
