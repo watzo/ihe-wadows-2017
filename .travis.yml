@@ -1,4 +1,9 @@
 language: java
+
+before_install:
+  - sudo apt-get -qq update
+  - apt-get install -y libxml2-utils
+
 script: 
   - xjc schema/DICOM/dicom.wado.ws.2011.xsd -d /tmp 
 
