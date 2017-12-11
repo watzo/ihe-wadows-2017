@@ -1,2 +1,8 @@
 language: java
-script: xjc schema/DICOM/dicom.wado.ws.2011.xsd -d /tmp 
+script: 
+  - xjc schema/DICOM/dicom.wado.ws.2011.xsd -d /tmp 
+
+jobs:
+  include:
+    - stage: validate samples
+      script: xmllint --schema schema/DICOM/dicom.wado.ws.2011.xsd samples/*
