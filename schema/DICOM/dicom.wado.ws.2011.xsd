@@ -118,15 +118,15 @@
             <xs:element ref="ihe:RepositoryUniqueId"/>
             <xs:element name="SourceDocumentUniqueId" type="xs:string"/>
             <xs:element ref="FrameNumber" minOccurs="0"/>
-            <xs:element ref="Annotation"/>
-            <xs:element ref="Rows"/>
-            <xs:element ref="Columns"/>
-            <xs:element ref="Region"/>
-            <xs:element ref="WindowWidth"/>
-            <xs:element ref="WindowCenter"/>
-            <xs:element ref="ImageQuality"/>
-            <xs:element ref="PresentationUID"/>
-            <xs:element ref="PresentationSeriesUID"/>
+            <xs:element ref="Annotation" minOccurs="0"/>
+            <xs:element ref="Rows" minOccurs="0"/>
+            <xs:element ref="Columns" minOccurs="0"/>
+            <xs:element ref="Region" minOccurs="0"/>
+            <xs:element ref="WindowWidth" minOccurs="0"/>
+            <xs:element ref="WindowCenter" minOccurs="0"/>
+            <xs:element ref="ImageQuality" minOccurs="0"/>
+            <xs:element ref="PresentationUID" minOccurs="0"/>
+            <xs:element ref="PresentationSeriesUID" minOccurs="0"/>
             <xs:element ref="Anonymize" minOccurs="0"/>
             <xs:element ref="ihe:Document"/>
             <xs:element ref="ihe:mimeType"/>
