@@ -4,10 +4,16 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libxml2-utils
 
-script: 
-  - xjc schema/DICOM/dicom.wado.ws.2011.xsd -d /tmp 
+stages:
+    - checkSchemaValidityWithXjc
+    - checkWsdlValidityWithWsImport
+    - validateSamples
 
 jobs:
   include:
-    - stage: validate samples
+    - stage: checkSchemaValidityWithXjc
+      script: xjc schema/DICOM/dicom.wado.ws.2011.xsd -d /tmp 
+    - stage: validateSamples
       script: xmllint --schema schema/DICOM/dicom.wado.ws.2011.xsd samples/*
+    - stage: checkWsdlValidityWithWsImport
+      script: wsimport wsdl/XDS-I.b_ImagingDocumentSource.wsdl -d /tmp
