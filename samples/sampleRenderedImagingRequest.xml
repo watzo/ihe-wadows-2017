@@ -19,7 +19,9 @@
         <xdsb:HomeCommunityId>urn:oid:1.2.3</xdsb:HomeCommunityId>
         <xdsb:RepositoryUniqueId>1.3.6.1.4.1000</xdsb:RepositoryUniqueId>
         <xdsb:DocumentUniqueId>1.3.6.1.4.2301</xdsb:DocumentUniqueId>
-        <wadows:ContentTypeList>image/jpeg</wadows:ContentTypeList>
+         <wadows:ContentTypeList>
+          <wadows:ContentType>image/jpeg</wadows:ContentType>
+        </wadows:ContentTypeList>
       </wadows:RenderedDocumentRequest>
     </wadows:SeriesRequest>
   </wadows:StudyRequest>
