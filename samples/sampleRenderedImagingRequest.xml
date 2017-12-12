@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wadows:RetrieveRenderedImagingDocumentSetRequest xmlns:wadows="urn:dicom:ws:wado:2011"
+<wadows:RetrieveRenderedImagingDocumentSetRequest xmlns:wadows="urn:dicom:wado:ws:2011"
 	xmlns="urn:ihe:rad:xdsi-b:2009"
 	xmlns:xdsb="urn:ihe:iti:xds-b:2007"
 	xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0"
@@ -11,13 +11,17 @@
         <xdsb:RepositoryUniqueId>1.3.6.1.4.1000</xdsb:RepositoryUniqueId>
         <xdsb:DocumentUniqueId>1.3.6.1.4.2300</xdsb:DocumentUniqueId>
         <wadows:FrameNumber>1</wadows:FrameNumber>
-        <wadows:ContentTypeList>image/jpeg</wadows:ContentTypeList>
+        <wadows:ContentTypeList>
+          <wadows:ContentType>image/jpeg</wadows:ContentType>
+        </wadows:ContentTypeList>
       </wadows:RenderedDocumentRequest>
       <wadows:RenderedDocumentRequest>
         <xdsb:HomeCommunityId>urn:oid:1.2.3</xdsb:HomeCommunityId>
         <xdsb:RepositoryUniqueId>1.3.6.1.4.1000</xdsb:RepositoryUniqueId>
         <xdsb:DocumentUniqueId>1.3.6.1.4.2301</xdsb:DocumentUniqueId>
-        <wadows:ContentTypeList>image/jpeg</wadows:ContentTypeList>
+         <wadows:ContentTypeList>
+          <wadows:ContentType>image/jpeg</wadows:ContentType>
+        </wadows:ContentTypeList>
       </wadows:RenderedDocumentRequest>
     </wadows:SeriesRequest>
   </wadows:StudyRequest>
