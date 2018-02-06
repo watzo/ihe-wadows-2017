@@ -32,7 +32,16 @@
   <xs:element name="Annotation" type="xs:string"/>
   <xs:element name="Rows" type="xs:int"/>
   <xs:element name="Columns" type="xs:int"/>
-  <xs:element name="Region" type="xs:string"/>
+  <xs:element name="Region" minOccurs="0" maxOccurs="1">
+    <xs:complexType>
+      <xs:sequence>
+	<xs:element name="XMin" type="xs:double" />
+	<xs:element name="YMin" type="xs:double" />
+	<xs:element name="XMax" type="xs:double" />
+	<xs:element name="YMax" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="WindowCenter" type="xs:double"/>
   <xs:element name="WindowWidth" type="xs:double"/>
   <xs:element name="ImageQuality" type="xs:int"/>
@@ -83,7 +92,7 @@
                         <xs:element ref="Annotation" minOccurs="0"/>
                         <xs:element ref="Rows" minOccurs="0"/>
                         <xs:element ref="Columns" minOccurs="0"/>
-                        <xs:element ref="Region" minOccurs="0"/>
+                        <xs:element ref="Region" minOccurs="0" />
                         <xs:element ref="WindowWidth" minOccurs="0"/>
                         <xs:element ref="WindowCenter" minOccurs="0"/>
                         <xs:element ref="ImageQuality" minOccurs="0"/>
