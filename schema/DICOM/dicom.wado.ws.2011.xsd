@@ -35,10 +35,10 @@
   <xs:element name="Region">
     <xs:complexType>
       <xs:sequence>
-	<xs:element name="XMin" type="xs:double" />
-	<xs:element name="YMin" type="xs:double" />
-	<xs:element name="XMax" type="xs:double" />
-	<xs:element name="YMax" type="xs:double" />
+	<xs:element name="XMin" type="xs:double"/>
+	<xs:element name="YMin" type="xs:double"/>
+	<xs:element name="XMax" type="xs:double"/>
+	<xs:element name="YMax" type="xs:double"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
