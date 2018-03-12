@@ -131,8 +131,8 @@
             <xs:element ref="Rows" minOccurs="0"/>
             <xs:element ref="Columns" minOccurs="0"/>
             <xs:element ref="Region" minOccurs="0"/>
-            <xs:element ref="WindowWidth" minOccurs="0"/>
             <xs:element ref="WindowCenter" minOccurs="0"/>
+            <xs:element ref="WindowWidth" minOccurs="0"/>
             <xs:element ref="ImageQuality" minOccurs="0"/>
             <xs:element ref="PresentationUID" minOccurs="0"/>
             <xs:element ref="PresentationSeriesUID" minOccurs="0"/>
