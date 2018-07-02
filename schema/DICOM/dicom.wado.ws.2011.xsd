@@ -103,7 +103,7 @@
                         <xs:element ref="ContentTypeList"/>
                         <xs:element ref="CharsetList" minOccurs="0"/>
 
-                        <xs:any namespace="##other" minOccurs="0" processContents="skip"/>
+                        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
