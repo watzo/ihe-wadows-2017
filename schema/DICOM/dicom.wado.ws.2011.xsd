@@ -102,6 +102,8 @@
                         <xs:element ref="FrameNumber" minOccurs="0"/>
                         <xs:element ref="ContentTypeList"/>
                         <xs:element ref="CharsetList" minOccurs="0"/>
+
+                        <xs:any namespace="##other" minOccurs="0" processContents="skip"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
